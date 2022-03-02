@@ -1,11 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import BuildGame from "./BuildGame";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./theme";
 import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BuildGame />
+    <ThemeProvider theme={theme}>
+      <BuildGame />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
