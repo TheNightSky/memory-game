@@ -5,7 +5,7 @@ class BuildGame extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      numPlayers: 0,
+      numPlayers: 1,
       gridSize: 4,
       theme: "nums",
       gameStarted: false,
@@ -41,7 +41,7 @@ class BuildGame extends Component {
                 value="num"
                 onChange={this.handleChange}
               />
-              <label for="num">num</label>
+              <label htmlFor="num">num</label>
 
               <input
                 type="radio"
@@ -50,7 +50,7 @@ class BuildGame extends Component {
                 value="icon"
                 onChange={this.handleChange}
               />
-              <label for="icon">icon</label>
+              <label htmlFor="icon">icon</label>
             </div>
 
             <div>
@@ -62,7 +62,7 @@ class BuildGame extends Component {
                 onChange={this.handleChange}
               />
 
-              <label for="1">1</label>
+              <label htmlFor="1">1</label>
               <input
                 type="radio"
                 id="2"
@@ -70,7 +70,7 @@ class BuildGame extends Component {
                 value="2"
                 onChange={this.handleChange}
               />
-              <label for="2">2</label>
+              <label htmlFor="2">2</label>
               <input
                 type="radio"
                 id="3"
@@ -78,7 +78,7 @@ class BuildGame extends Component {
                 value="3"
                 onChange={this.handleChange}
               />
-              <label for="3">3</label>
+              <label htmlFor="3">3</label>
               <input
                 type="radio"
                 id="4"
@@ -86,7 +86,7 @@ class BuildGame extends Component {
                 value="4"
                 onChange={this.handleChange}
               />
-              <label for="4">4</label>
+              <label htmlFor="4">4</label>
             </div>
 
             <div>
@@ -97,7 +97,7 @@ class BuildGame extends Component {
                 value="4"
                 onChange={this.handleChange}
               />
-              <label for="4x4">4x4</label>
+              <label htmlFor="4x4">4x4</label>
               <input
                 type="radio"
                 id="6x6"
@@ -105,16 +105,17 @@ class BuildGame extends Component {
                 value="6"
                 onChange={this.handleChange}
               />
-              <label for="6x6">6x6</label>
+              <label htmlFor="6x6">6x6</label>
             </div>
 
-            <button>Submit</button>
+            <button>Start Game</button>
           </form>
         </div>
       );
     } else {
       return (
         <Game
+          key="1"
           numPlayers={this.state.numPlayers}
           gridSize={this.state.gridSize}
           theme={this.state.theme}

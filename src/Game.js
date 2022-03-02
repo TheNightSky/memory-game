@@ -1,77 +1,137 @@
 import React, { Component } from "react";
-import GamePiece from "./GamePiece";
+import { generateRandomBoard, setUpPlayers } from "./helpers";
+import Tile from "./Tile";
 import Player from "./Player";
+
 class Game extends Component {
   constructor(props) {
     super(props);
-
-    let icons = {
-      0: "arrows",
-      1: "badge",
-      2: "bandit",
-      3: "boot",
-      4: "cactus",
-      5: "cowSkull",
-      6: "dreamCatcher",
-      7: "gallow",
-      8: "horse",
-      9: "horseshoe",
-      10: "native",
-      11: "pickaxe",
-      12: "pistol",
-      13: "saloon",
-      14: "sheriff",
-      15: "tomahawk",
-      16: "wagon",
-      17: "wantedPoster",
-    };
-
-    let numbers = [
-      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
-    ];
-
     this.state = {
-      gamePieces: [],
-      players: this.createPlayers(),
+      selectedTiles: [],
+      players: [<Player key="1" />],
       timer: false,
-      board: this.createBoard(),
+      board: generateRandomBoard(parseInt(this.props.gridSize)),
     };
-
-    this.createPlayers = this.createPlayers.bind(this);
-    this.createBoard = this.createBoard.bind(this);
+    this.buildBoard = this.buildBoard.bind(this);
+    this.postMatchProcess = this.postMatchProcess.bind(this);
+    this.revertStatus = this.revertStatus.bind(this);
+    //this.changeTileStatus = this.changeTileStatus.bind(this);
+    // this.addTile = this.addTile.bind(this);
+    // this.findActiveTile = this.findActiveTile.bind(this);
+    // this.isMatch = this.isMatch.bind(this);
   }
 
-  createBoard() {
-    let board = [];
-    let grid = parseInt(this.props.gridSize);
-    for (let i = 0; i < grid; i++) {
-      let row = [];
-      for (let j = 0; j < grid; j++) {
-        row.push(<GamePiece key={[i, j]} active={false} />);
-      }
-      board.push(row);
+  componentDidUpdate() {
+    const tiles = this.state.selectedTiles;
+    if (tiles.length === 2) {
+      this.postMatchProcess();
+    }
+  }
+
+  buildBoard(arr) {
+    const board = [];
+    for (let i = 0; i < arr.length; i++) {
+      board.push(
+        <Tile
+          val={arr[i].val}
+          id={arr[i].id}
+          status={arr[i].status}
+          activate={() => this.changeTileStatus(arr[i].id)}
+          key={i}
+        />
+      );
     }
     return board;
   }
 
-  createPlayers() {
-    let num = parseInt(this.props.numPlayers);
-    if (num === 1) return this.singlePlayermode();
-    else {
-      let players = [];
-      for (let i = 0; i < num; i++) {
-        players.push(<Player key={i + 1} currPlayer={false} />);
-      }
+  //prematching
 
-      return players;
+  changeTileStatus(id) {
+    let activeTile;
+    const board = this.state.board.map((tile) => {
+      if (
+        tile.id === id &&
+        tile.status !== "matched" &&
+        !(tile in this.state.selectedTiles)
+      ) {
+        tile.status = "active";
+        activeTile = tile;
+
+        return tile;
+      }
+      return tile;
+    });
+    this.setState({
+      board: [...board],
+      selectedTiles: [...this.state.selectedTiles, activeTile],
+    });
+    console.log(this.state.selectedTiles);
+  }
+
+  //matching
+  isMatch() {
+    const currTiles = this.state.selectedTiles;
+    console.log(currTiles[0].value);
+    if (currTiles[0].val === currTiles[1].val) return true;
+    return false;
+  }
+
+  //postmatching
+  postMatchProcess() {
+    const stat = this.isMatch();
+    console.log(stat);
+    if (stat) {
+      console.log("MATCH");
+      const board = this.state.board.map((tile) => {
+        if (tile.status === "active") {
+          tile.status = "matched";
+          return tile;
+        }
+        return tile;
+      });
+      this.setState({
+        board: [...board],
+        selectedTiles: [],
+      });
+    } else {
+      this.revertStatus();
     }
   }
 
+  revertStatus() {
+    const board = this.state.board.map((tile) => {
+      if (tile.status === "active") {
+        tile.status = null;
+        return tile;
+      }
+      return tile;
+    });
+
+    this.setState({ board: [...board], selectedTiles: [] });
+  }
+
+  // addTile() {
+  //   if (this.state.selectedTiles.length < 2) {
+  //     this.setState((st) => ({
+  //       selectedTiles: st.selectedTiles.push(this.findActiveTile()),
+  //     }));
+  //   }
+  // }
+
+  // findActiveTile() {
+  //   const board = this.state.board;
+  //   const [tile] = board.filter(
+  //     (t) => t.status === "active" && ~(t in this.state.selectedTiles)
+  //   );
+  //   return tile;
+  // }
+
   render() {
+    const board = this.buildBoard(this.state.board);
     return (
       <div>
         <h1>Hey there fellers</h1>
-        {this.state.board}
+        {board}
 
         {this.state.players}
       </div>
