@@ -17,13 +17,11 @@ export const generateRandomBoard = (size) => {
   return temp.map((val, id) => ({ id, val, status: null }));
 };
 
-export const setUpPlayers = (playersNumber) => {
+export const setUpPlayers = (numPlayers) => {
   let players = [];
-  for (let i = 0; i < playersNumber; i++) {
-    players.push({ id: i, moves: 0, points: 0 });
+  for (let i = 0; i < numPlayers; i++) {
+    players.push({ id: i, moves: 0, points: 0, status: null });
   }
-  return {
-    currentPlayer: 0,
-    players,
-  };
+  console.log(players);
+  return players;
 };

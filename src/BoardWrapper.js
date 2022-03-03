@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const GameWrapper = styled.div`
+export const BoardWrapper = styled.div`
   display: grid;
   width: 600px;
   height: 600px;

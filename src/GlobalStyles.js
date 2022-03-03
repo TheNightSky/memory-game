@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
 body{
     margin: 0;
     font-family: 'Atkinson Hyperlegible', sans-serif;
@@ -13,4 +13,4 @@ a, button {
 }
 `;
 
-export default GlobalStyle;
+export default GlobalStyles;

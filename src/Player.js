@@ -1,7 +1,12 @@
-import React from "react";
+import { PlayerWrapper } from "./PlayerWrapper.styles";
 
-const Player = (props) => {
-  return <div>Player</div>;
+const Player = ({ id, moves, points, status, isWinner }) => {
+  return (
+    <PlayerWrapper status={status} isWinner={isWinner}>
+      Player <span>{id + 1}</span>
+      <span>{points}</span>
+    </PlayerWrapper>
+  );
 };
 
 export default Player;

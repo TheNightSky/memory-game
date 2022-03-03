@@ -1,4 +1,3 @@
-import React, { Component, useState } from "react";
 import { icons } from "./icons";
 import { TileWrapper } from "./Tile.styles";
 
@@ -15,7 +14,6 @@ const Tile = ({ id, val, status, activate, iconType }) => {
         break;
       }
       default: {
-        console.log(tileValue);
         tileValue = val;
         break;
       }
@@ -26,10 +24,11 @@ const Tile = ({ id, val, status, activate, iconType }) => {
     <TileWrapper
       key={id}
       status={status}
-      onClick={!status ? () => activate(id) : null}
+      onClick={!status ? () => activate() : undefined}
     >
       {tileValue}
     </TileWrapper>
   );
 };
 export default Tile;
+//
