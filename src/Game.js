@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Board from "./Board";
+import Board from "./Components/Board";
 import { generateRandomBoard, setUpPlayers } from "./helpers";
-import Players from "./Players";
+import Players from "./Components/Players";
 
 class Game extends Component {
   constructor(props) {
@@ -77,7 +77,6 @@ class Game extends Component {
         player.moves += 1;
         return player;
       }
-
       return player;
     });
 
@@ -102,7 +101,6 @@ class Game extends Component {
         player.status = null;
         return player;
       }
-
       return player;
     });
 
@@ -119,8 +117,6 @@ class Game extends Component {
     // const players = this.buildPlayers(this.state.players);
     return (
       <div>
-        <h1>Hey there fellers</h1>
-
         <Board
           settings={this.props}
           board={this.state.board}

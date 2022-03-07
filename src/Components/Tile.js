@@ -1,4 +1,4 @@
-import { icons } from "./icons";
+import { icons } from "../icons";
 import { TileWrapper } from "./Tile.styles";
 
 const Tile = ({ id, val, status, activate, iconType }) => {
