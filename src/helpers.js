@@ -22,6 +22,5 @@ export const setUpPlayers = (numPlayers) => {
   for (let i = 0; i < numPlayers; i++) {
     players.push({ id: i, moves: 0, points: 0, status: null });
   }
-  console.log(players);
   return players;
 };

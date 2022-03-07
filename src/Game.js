@@ -9,17 +9,19 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      gamePause: false,
+      gameStarted: false,
+      timer: false,
       activePlayer: 0,
       activeTiles: [],
       players: setUpPlayers(parseInt(this.props.numPlayers)),
-      timer: false,
       board: generateRandomBoard(parseInt(this.props.gridSize)),
     };
+
     this.changeTileStatus = this.changeTileStatus.bind(this);
     this.isMatch = this.isMatch.bind(this);
     this.postMatchProcess = this.postMatchProcess.bind(this);
     this.revertStatus = this.revertStatus.bind(this);
-    this.restartGame = this.restartGame.bind(this);
   }
 
   componentDidUpdate() {
@@ -33,12 +35,16 @@ class Game extends Component {
   }
 
   restartGame() {
-    this.props.handleRestart({
-      theme: this.props.theme,
-      numPlayers: this.props.numPlayers,
-      gridSize: this.props.gridSize,
+    this.setState({
+      players: setUpPlayers(parseInt(this.props.numPlayers)),
+      board: generateRandomBoard(parseInt(this.props.gridSize)),
     });
   }
+
+  newGame() {
+    this.props.newGame(!this.props.gameStarted);
+  }
+
   //prematching
 
   changeTileStatus(id) {
@@ -48,7 +54,7 @@ class Game extends Component {
         if (
           tile.id === id &&
           tile.status !== "matched" &&
-          tile.status != "active"
+          tile.status !== "active"
         ) {
           tile.status = "active";
           activeTile = tile;
@@ -123,15 +129,15 @@ class Game extends Component {
   }
 
   render() {
-    // const board = this.buildBoard(this.state.board);
-    // const players = this.buildPlayers(this.state.players);
     return (
       <div>
         <ViewWrapper>
-          <Button isHighlighted onClick={this.restartGame}>
+          <Button isHighlighted onClick={() => this.restartGame()}>
             Restart
           </Button>
-          <Button hasDarkFont>New Game</Button>
+          <Button hasDarkFont onClick={() => this.newGame()}>
+            New Game
+          </Button>
         </ViewWrapper>
 
         <Board
@@ -145,8 +151,6 @@ class Game extends Component {
           activePlayer={this.state.activePlayer}
           isWinner={null}
         />
-
-        {/* <BoardWrapper size={this.props.gridSize}>{board}</BoardWrapper> */}
       </div>
     );
   }

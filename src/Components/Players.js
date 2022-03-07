@@ -1,6 +1,5 @@
 import Player from "./Player";
 import styled from "styled-components";
-
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -13,6 +12,7 @@ const Players = ({ players, activePlayer, isWinner }) => {
       {players.map((player) => {
         return (
           <Player
+            numPlayers={players.length}
             isWinner={isWinner === player.id ? true : false}
             moves={player.moves}
             points={player.points}

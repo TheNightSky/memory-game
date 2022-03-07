@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import ControlView from "./ControlView";
 import Game from "./Game";
+
 class Control extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       numPlayers: "1",
       gridSize: "4",
@@ -11,8 +13,6 @@ class Control extends Component {
       gamePaused: false,
       gameStarted: false,
     };
-
-    this.handleRestart = this.handleRestart.bind(this);
   }
 
   handleClick(evt) {
@@ -20,15 +20,6 @@ class Control extends Component {
   }
   handleSubmit() {
     this.setState({ gameStarted: !this.state.gameStarted });
-  }
-
-  handleRestart(settings) {
-    this.setState({
-      numPlayers: settings.numPlayers,
-      gridSize: settings.gridSize,
-      theme: settings.theme,
-      gamePaused: false,
-    });
   }
 
   render() {
@@ -42,14 +33,16 @@ class Control extends Component {
       );
     else {
       return (
-        <Game
-          key="1"
-          numPlayers={this.state.numPlayers}
-          gridSize={this.state.gridSize}
-          theme={this.state.theme}
-          newGame={this.createGame}
-          handleRestart={this.handleRestart}
-        />
+        <div>
+          <Game
+            key="1"
+            numPlayers={this.state.numPlayers}
+            gridSize={this.state.gridSize}
+            theme={this.state.theme}
+            gameStarted={this.state.gameStarted}
+            newGame={() => this.handleSubmit()}
+          />
+        </div>
       );
     }
   }
