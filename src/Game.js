@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Board from "./Components/Board";
+import { ViewWrapper } from "./ViewWrapper.styles";
 import { generateRandomBoard, setUpPlayers } from "./helpers";
 import Players from "./Components/Players";
+import { Button } from "./Buttons.styles";
 
 class Game extends Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class Game extends Component {
     this.isMatch = this.isMatch.bind(this);
     this.postMatchProcess = this.postMatchProcess.bind(this);
     this.revertStatus = this.revertStatus.bind(this);
+    this.restartGame = this.restartGame.bind(this);
   }
 
   componentDidUpdate() {
@@ -29,6 +32,13 @@ class Game extends Component {
     }
   }
 
+  restartGame() {
+    this.props.handleRestart({
+      theme: this.props.theme,
+      numPlayers: this.props.numPlayers,
+      gridSize: this.props.gridSize,
+    });
+  }
   //prematching
 
   changeTileStatus(id) {
@@ -117,6 +127,13 @@ class Game extends Component {
     // const players = this.buildPlayers(this.state.players);
     return (
       <div>
+        <ViewWrapper>
+          <Button isHighlighted onClick={this.restartGame}>
+            Restart
+          </Button>
+          <Button hasDarkFont>New Game</Button>
+        </ViewWrapper>
+
         <Board
           settings={this.props}
           board={this.state.board}

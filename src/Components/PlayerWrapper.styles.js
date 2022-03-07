@@ -48,19 +48,6 @@ export const PlayerWrapper = styled.div`
       font-size: 24px;
     }
   }
-  &::after {
-    position: absolute;
-    content: "";
-    display: block;
-    width: 45px;
-    height: 45px;
-    background-color: ${({ theme }) => theme.colors.orange};
-    z-index: -10;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(45deg);
-    opacity: ${({ status }) => (status === "active" ? 1 : 0)};
-    transition: opacity 200ms;
-  }
   &::before {
     ${({ status, theme }) =>
       status === "active" &&
@@ -78,6 +65,20 @@ export const PlayerWrapper = styled.div`
       font-size: 13px;
       font-weight: bold;
     `}
+    &::after {
+      position: absolute;
+      content: "";
+      display: block;
+      width: 45px;
+      height: 45px;
+      background-color: ${({ theme }) => theme.colors.orange};
+      z-index: -10;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      opacity: ${({ status }) => (status === "active" ? 1 : 0)};
+      transition: opacity 200ms;
+    }
+
     @media (max-width: 800px) {
       content: none;
     }

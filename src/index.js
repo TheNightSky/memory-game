@@ -1,17 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import BuildGame from "./BuildGame";
-import Menu from "./Menu";
+import Control from "./Control";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./theme";
-import GlobalStyles from "./GlobalStyles";
+import { theme } from "./styles/theme";
+import GlobalStyles from "./styles/GlobalStyles";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Menu />
-      <BuildGame />
+      <Control />
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
