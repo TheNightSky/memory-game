@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Control from "./Control";
 import { ThemeProvider } from "styled-components";
-import { theme } from "./styles/theme";
-import GlobalStyles from "./styles/GlobalStyles";
+import { theme } from "./assets/styles/theme";
+import GlobalStyle from "./assets/styles/GlobalStyle";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
+      <GlobalStyle />
       <Control />
     </ThemeProvider>
   </React.StrictMode>,

@@ -1,11 +1,11 @@
-import { Button } from "./Buttons.styles";
+import { Button } from "./assets/styles/Button.styles";
 import {
   Wrapper,
   ControlViewWrapper,
   ButtonsRow,
-} from "./ControlWrapper.styles";
+} from "./assets/styles/wrappers/ControlWrapper.styles";
 
-const ControlView = ({ settings, handleClick, createGame }) => {
+const Menu = ({ settings, handleClick, createGame }) => {
   const { numPlayers, gridSize, theme } = settings;
 
   return (
@@ -96,4 +96,4 @@ const ControlView = ({ settings, handleClick, createGame }) => {
   );
 };
 
-export default ControlView;
+export default Menu;

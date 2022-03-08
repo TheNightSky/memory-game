@@ -5,8 +5,14 @@ export const TileWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80px;
-  height: 80px;
+  width: ${({ size }) => {
+    if (size === 4) return `${120}px`;
+    return `${80}px`;
+  }};
+  height: ${({ size }) => {
+    if (size === 4) return `${120}px`;
+    return `${80}px`;
+  }};
   background-color: ${({ theme, status }) => {
     if (status === "matched") return theme.colors.lightGrey;
     if (status === "active") return theme.colors.orange;
@@ -24,5 +30,12 @@ export const TileWrapper = styled.div`
   }
   &:hover {
     background-color: ${({ theme, status }) => !status && theme.colors.blue};
+  }
+
+  svg {
+    transform: ${({ size }) => {
+      if (size === 4) return `scale(${1.1})`;
+      if (size === 6) return `scale(${1.0})`;
+    }};
   }
 `;

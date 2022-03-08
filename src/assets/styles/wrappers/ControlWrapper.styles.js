@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { ViewWrapper } from "./ViewWrapper.styles";
-import { Button } from "./Buttons.styles";
+import { Button } from "../Button.styles";
 
 // import ViewWrapper from "components/ViewWrapper/ViewWrapper";
 

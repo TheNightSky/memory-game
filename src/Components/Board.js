@@ -1,5 +1,5 @@
 import React from "react";
-import { BoardWrapper } from "./BoardWrapper";
+import { BoardWrapper } from "../assets/styles/wrappers/BoardWrapper";
 import Tile from "./Tile";
 
 const Board = ({ settings, board, handleClick }) => {
@@ -8,6 +8,7 @@ const Board = ({ settings, board, handleClick }) => {
       {board.map((tile) => {
         return (
           <Tile
+            size={parseInt(settings.gridSize)}
             val={tile.val}
             id={tile.id}
             iconType={settings.theme}

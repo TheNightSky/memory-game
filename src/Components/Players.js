@@ -1,14 +1,8 @@
 import Player from "./Player";
-import styled from "styled-components";
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 40px;
-`;
+import { PanelWrapper } from "../assets/styles/wrappers/PanelWrapper.styles";
 const Players = ({ players, activePlayer, isWinner }) => {
   return (
-    <Wrapper>
+    <PanelWrapper>
       {players.map((player) => {
         return (
           <Player
@@ -22,7 +16,7 @@ const Players = ({ players, activePlayer, isWinner }) => {
           />
         );
       })}
-    </Wrapper>
+    </PanelWrapper>
   );
 };
 

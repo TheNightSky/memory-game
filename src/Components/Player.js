@@ -1,5 +1,4 @@
-import Players from "./Players";
-import { PlayerWrapper } from "./PlayerWrapper.styles";
+import { PlayerWrapper } from "../assets/styles/wrappers/PlayerWrapper.styles";
 
 const Player = ({ id, numPlayers, moves, points, status, isWinner }) => {
   if (numPlayers === 1) {

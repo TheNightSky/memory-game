@@ -11,7 +11,7 @@ class Timer extends Component {
 
     this.formatTime = this.formatTime.bind(this);
   }
-  componentDidUpdate() {
+  componentDidMount() {
     setInterval(() => this.renderTime(), 1000);
   }
   renderTime() {

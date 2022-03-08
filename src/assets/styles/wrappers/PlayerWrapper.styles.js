@@ -15,6 +15,7 @@ export const PlayerWrapper = styled.div`
   align-items: center;
   border-radius: 10px;
   position: relative;
+  min-width: 260px;
   @media (max-width: 800px) {
     flex-direction: column;
     justify-content: center;
@@ -48,36 +49,38 @@ export const PlayerWrapper = styled.div`
       font-size: 24px;
     }
   }
+
+  &::after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 45px;
+    height: 45px;
+    background-color: ${({ theme }) => theme.colors.orange};
+    z-index: -10;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    opacity: ${({ status }) => (status === "active" ? 1 : 0)};
+    transition: opacity 200ms;
+  }
+
   &::before {
     ${({ status, theme }) =>
       status === "active" &&
       `
-      position: absolute;
-      content: 'CURRENT TURN';
-      display:block;
-      width: 100%;
-      text-align: center;
-      color: ${theme.colors.black};
-      letter-spacing: 5px;
-      z-index: 10;
-      left: 0;
-      bottom: -35px;
-      font-size: 13px;
-      font-weight: bold;
-    `}
-    &::after {
-      position: absolute;
-      content: "";
-      display: block;
-      width: 45px;
-      height: 45px;
-      background-color: ${({ theme }) => theme.colors.orange};
-      z-index: -10;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(45deg);
-      opacity: ${({ status }) => (status === "active" ? 1 : 0)};
-      transition: opacity 200ms;
-    }
+        position: absolute;
+        content: 'CURRENT TURN';
+        display:block;
+        width: 100%;
+        text-align: center;
+        color: ${theme.colors.black};
+        letter-spacing: 5px;
+        z-index: 10;
+        left: 0;
+        bottom: -35px;
+        font-size: 13px;
+        font-weight: bold;
+      `}
 
     @media (max-width: 800px) {
       content: none;

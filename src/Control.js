@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ControlView from "./ControlView";
+import Menu from "./Menu";
 import Game from "./Game";
 
 class Control extends Component {
@@ -25,7 +25,7 @@ class Control extends Component {
   render() {
     if (!this.state.gameStarted)
       return (
-        <ControlView
+        <Menu
           settings={this.state}
           handleClick={(evt) => this.handleClick(evt)}
           createGame={() => this.handleSubmit()}

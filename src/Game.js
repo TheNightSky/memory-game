@@ -1,17 +1,13 @@
 import React, { Component } from "react";
 import Board from "./Components/Board";
-import { ViewWrapper } from "./ViewWrapper.styles";
 import { generateRandomBoard, setUpPlayers } from "./helpers";
 import Players from "./Components/Players";
-import { Button } from "./Buttons.styles";
+import { Header } from "./Components/Header";
 
 class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gamePause: false,
-      gameStarted: false,
-      timer: false,
       activePlayer: 0,
       activeTiles: [],
       players: setUpPlayers(parseInt(this.props.numPlayers)),
@@ -46,7 +42,6 @@ class Game extends Component {
   }
 
   //prematching
-
   changeTileStatus(id) {
     if (this.state.activeTiles.length !== 2) {
       let activeTile;
@@ -131,15 +126,10 @@ class Game extends Component {
   render() {
     return (
       <div>
-        <ViewWrapper>
-          <Button isHighlighted onClick={() => this.restartGame()}>
-            Restart
-          </Button>
-          <Button hasDarkFont onClick={() => this.newGame()}>
-            New Game
-          </Button>
-        </ViewWrapper>
-
+        <Header
+          newGame={() => this.newGame()}
+          restartGame={() => this.restartGame()}
+        />
         <Board
           settings={this.props}
           board={this.state.board}
