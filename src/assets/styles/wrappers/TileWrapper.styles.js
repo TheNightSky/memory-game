@@ -24,9 +24,9 @@ export const TileWrapper = styled.div`
   font-weight: 700;
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
-  transition: background-color 150ms;
+  transition: background-color 200ms;
   @media (max-width: 800px) {
-    font-size: 44px;
+    font-size: 40px;
   }
   &:hover {
     background-color: ${({ theme, status }) => !status && theme.colors.blue};
