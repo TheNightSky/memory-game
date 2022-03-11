@@ -34,6 +34,7 @@ class Game extends Component {
     this.setState({
       players: setUpPlayers(parseInt(this.props.numPlayers)),
       board: generateRandomBoard(parseInt(this.props.gridSize)),
+      activeTiles: [],
       activePlayer: 0,
     });
   }
